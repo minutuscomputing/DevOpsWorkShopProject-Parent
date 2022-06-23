@@ -61,7 +61,7 @@
 	</repository>
  
 	<snapshotRepository>
-		<id>central</id>
+		<id>nexus-snapshots</id>
 		<name>minutus-snapshot</name>
 		<url>http://43.204.205.20:8081/repository/minutus-snapshot/</url>
 	</snapshotRepository>
