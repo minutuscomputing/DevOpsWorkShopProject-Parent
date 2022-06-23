@@ -55,14 +55,14 @@
 	</build>
 <distributionManagement>
 	<repository>
-		<id>devopsschool</id>
-		<name>Internal Releases</name>
+		<id>central</id>
+		<name>minutus-release</name>
 		<url>http://43.204.205.20:8081/repository/minutus-release/</url>
 	</repository>
  
 	<snapshotRepository>
-		<id>devopsschool</id>
-		<name>Internal Releases</name>
+		<id>central</id>
+		<name>minutus-snapshot</name>
 		<url>http://43.204.205.20:8081/repository/minutus-snapshot/</url>
 	</snapshotRepository>
 
