@@ -53,5 +53,18 @@
 			</plugin>
 		</plugins>
 	</build>
+<distributionManagement>
+	<repository>
+		<id>devopsschool</id>
+		<name>Internal Releases</name>
+		<url>http://43.204.205.20:8081/repository/minutus-release/</url>
+	</repository>
+ 
+	<snapshotRepository>
+		<id>devopsschool</id>
+		<name>Internal Releases</name>
+		<url>http://43.204.205.20:8081/repository/minutus-snapshot/</url>
+	</snapshotRepository>
 
+</distributionManagement>
 </project>
