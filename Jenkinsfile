@@ -10,7 +10,7 @@ pipeline {
         stage('Build') {
             steps {
                 // clone code from a GitHub repository
-                git branch: 'Neelam_WS', url: 'https://github.com/minutuscomputing/DevOpsWorkShopProject-Parent.git'
+                git branch: 'Pramod_WSP', url: 'https://github.com/minutuscomputing/DevOpsWorkShopProject-Parent.git'
 
                 // Run Maven on a Unix agent.
                 sh "mvn -Dmaven.test.failure.ignore=true clean test package deploy"
