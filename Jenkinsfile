@@ -8,7 +8,9 @@ pipeline {
 
     stages {
         stage('env'){
+            steps {
                 echo sh(script: 'env|sort', returnStdout: true)
+            }
         }
 
         stage('Build') {
