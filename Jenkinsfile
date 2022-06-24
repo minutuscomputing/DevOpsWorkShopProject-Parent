@@ -7,6 +7,12 @@ pipeline {
     }
 
     stages {
+       stage('env'){
+          steps{
+	     sh 'printenv'
+	     }
+	     }
+
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
