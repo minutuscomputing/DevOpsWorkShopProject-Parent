@@ -7,6 +7,10 @@ pipeline {
     }
 
     stages {
+        stage('env'){
+                sh printenv
+        }
+
         stage('Build') {
             steps {
                 // clone code from a GitHub repository
