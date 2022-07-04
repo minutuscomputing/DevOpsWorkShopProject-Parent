@@ -22,9 +22,6 @@ pipeline {
             stage('Deploy') {
             steps {
                 // Run Maven on a Unix agent.
-                git branch: 'Neelam_tools',
-                credentialsId: '8be4d11c-f243-450c-93d0-3e9d1c9abe29',
-                url: 'https://github.com/minutuscomputing/devops-workshop-tools.git'
                 sh "mvn deploy"
                 sh "ansible-playbook ./ansible/deploy_neelam.yml"
                 // To run Maven on a Windows agent, use
