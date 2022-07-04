@@ -27,7 +27,7 @@ pipeline {
 	stage('Deploy') {	
 	    steps {
                 // Get some code from a GitHub repository
-                git branch: 'Meghana_tools', url: 'https://github.com/minutuscomputing/devops-workshop-tools.git'
+                git branch: 'Meghana_tools', url: 'https://github.com/minutuscomputing/devops-workshop-tools'
                 // Run Maven on a Unix agent.
                 sh "mvn -Dmaven.test.failure.ignore=true deploy"
                  //Clean package
