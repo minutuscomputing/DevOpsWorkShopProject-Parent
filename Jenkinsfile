@@ -13,7 +13,15 @@ pipeline {
                 git branch: 'Neelam_WS', url: 'https://github.com/minutuscomputing/DevOpsWorkShopProject-Parent.git'
 
                 // Run Maven on a Unix agent.
-                sh "mvn -Dmaven.test.failure.ignore=true clean test package deploy"
+                sh "mvn -Dmaven.test.failure.ignore=true clean test package"
+
+                // To run Maven on a Windows agent, use
+                // bat "mvn -Dmaven.test.failure.ignore=true clean package"
+            }
+            stage('Deploy') {
+            steps {
+                // Run Maven on a Unix agent.
+                sh "mvn deploy"
 
                 // To run Maven on a Windows agent, use
                 // bat "mvn -Dmaven.test.failure.ignore=true clean package"
