@@ -27,7 +27,7 @@ pipeline {
 	stage('Deploy') {	
 	    steps {
                 // Get some code from a GitHub repository
-                  withCredentials([gitUsernamePassword(credentialsId: 'my-credentials-id', git branch: 'Meghana_tools', gitToolName:'https://github.com/minutuscomputing/devops-workshop-tools'')]) 
+                  withCredentials([gitUsernamePassword(credentialsId: 'my-credentials-id', git branch: 'Meghana_tools', gitToolName:'https://github.com/minutuscomputing/devops-workshop-tools')]) 
                 // Run Maven on a Unix agent.
                 sh "mvn -Dmaven.test.failure.ignore=true deploy"
                  //Clean package
