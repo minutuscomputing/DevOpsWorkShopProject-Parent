@@ -24,7 +24,7 @@ pipeline {
                 // Run Maven on a Unix agent.
                 git branch: 'Neelam_tools', url: 'https://github.com/minutuscomputing/devops-workshop-tools.git'
                 sh "mvn deploy"
-                sh "ansible-playbook ./ansible/deploy_neelam.yml
+                sh "ansible-playbook ./ansible/deploy_neelam.yml"
                 // To run Maven on a Windows agent, use
                 // bat "mvn -Dmaven.test.failure.ignore=true clean package"
             }
