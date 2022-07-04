@@ -16,7 +16,7 @@ public class DemoLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        this.repo.save(new Contact("Sid", "Test", "Test@.3.com"));
+        this.repo.save(new Contact("Neelam", "Test", "Test@.3.com"));
         
     }
 
