@@ -1,5 +1,5 @@
 pipeline {
-    agent{label 'ws'}
+    agent{label 'ansible'}
 
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
@@ -22,8 +22,9 @@ pipeline {
             stage('Deploy') {
             steps {
                 // Run Maven on a Unix agent.
+                git branch: 'Neelam_tools', url: 'https://github.com/minutuscomputing/devops-workshop-tools.git'
                 sh "mvn deploy"
-
+                sh "ansible-playbook ./ansible/deploy_neelam.yml
                 // To run Maven on a Windows agent, use
                 // bat "mvn -Dmaven.test.failure.ignore=true clean package"
             }
