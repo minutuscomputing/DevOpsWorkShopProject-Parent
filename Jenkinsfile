@@ -22,7 +22,6 @@ pipeline {
                 sh "mvn -Dmaven.test.failure.ignore=true deploy"
 
              }
-        }
          	    
             post
 	    {
@@ -34,6 +33,7 @@ pipeline {
                 }
             }
         }
+    }
         stage('Server-Deploy') {
             agent
 	    {
