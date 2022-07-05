@@ -7,42 +7,32 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
+        stage('Build and deploy') {
             agent 
 	    {
                 label 'ws'
             }
 	    steps
 	    {
-		echo "Build stage"
+		echo "Build and deploy stage"
                 // clone code from a GitHub repository
                 git branch: 'Neelam_WS', url: 'https://github.com/minutuscomputing/DevOpsWorkShopProject-Parent.git'
 
                 // Run Maven on a Unix agent.
-                sh "mvn -Dmaven.test.failure.ignore=true clean test"
-
+                sh "mvn -Dmaven.test.failure.ignore=true clean test package deploy"
+                //sh "mvn deploy"
              }
-        }
-        stage('Maven-Deploy') {
-  	    agent
-	    {
-                label 'ws'
-            }
-	    steps 
-	    {
-		echo "Maven-deploy stage"
-	        sh 'mvn -Dmaven.test.skip=true package deploy'
-   	    }    	    
-            post
-	    {
+	     post
+	     {
                 // If Maven was able to run the tests, even if some of the test
                 // failed, record the test results and archive the jar file.
                 success {
                     junit '**/target/surefire-reports/TEST-*.xml'
                     archiveArtifacts 'target/*.jar'
                 }
-            }
+              }
         }
+
         stage('Server-Deploy') {
             agent
 	    {
