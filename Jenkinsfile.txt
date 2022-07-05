@@ -18,7 +18,7 @@ pipeline {
                 // To run Maven on a Windows agent, use
                 // bat "mvn -Dmaven.test.failure.ignore=true clean package"
          
-              sh " RestProj_Bizs>mvn clean install package -Drelease.artifactId=RestAPIBiz -Drelease.version=10.6 -Drele                  ase.svm.version=74
+              sh " RestProj_Bizs>mvn clean install package -Drelease.artifactId=RestAPIBiz -Drelease.version=10.6 -Drelease.svm.version=74
            }
 
             post {
