@@ -14,6 +14,7 @@ pipeline {
             }
 	    steps
 	    {
+		echo "Build stage"
                 // clone code from a GitHub repository
                 git branch: 'Neelam_WS', url: 'https://github.com/minutuscomputing/DevOpsWorkShopProject-Parent.git'
 
@@ -29,6 +30,7 @@ pipeline {
             }
 	    steps 
 	    {
+		echo "Maven-deploy stage"
 	        sh 'mvn deploy'
    	    }    	    
             post
@@ -48,6 +50,7 @@ pipeline {
             }
 	    steps 	   
 	    {
+	       echo "server deploy stage"
      	       git branch: 'Neelam_tools', url: 'https://github.com/minutuscomputing/devops-workshop-tools.git', credentialsId: '8be4d11c-f243-450c-93d0-3e9d1c9abe29'
 	       sh 'ansible-galaxy install geerlingguy.java'
                sh 'ansible-playbook ./ansible/deploy_neelam.yml'               
