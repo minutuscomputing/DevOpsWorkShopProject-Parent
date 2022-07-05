@@ -23,8 +23,8 @@ pipeline {
 
              }
         }
-        	    
-           post
+         	    
+            post
 	    {
                 // If Maven was able to run the tests, even if some of the test
                 // failed, record the test results and archive the jar file.
@@ -33,7 +33,7 @@ pipeline {
                     archiveArtifacts 'target/*.jar'
                 }
             }
-        
+        }
         stage('Server-Deploy') {
             agent
 	    {
@@ -42,10 +42,11 @@ pipeline {
 	    steps 	   
 	    {
 	       echo "server deploy stage"
-     	       git branch: 'Meghana_tools', url: 'https://github.com/minutuscomputing/devops-workshop-tools.git', credentialsId: 'meghana'
+     	       git branch: 'Meghana_tools', url: 'https://github.com/minutuscomputing/devops-workshop-tools.git', credentialsId: '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'
 	       sh 'ansible-galaxy install geerlingguy.java'
                sh 'ansible-playbook ./playbooks/deploy.yml'               
             }         
         }
+
     }
 }
