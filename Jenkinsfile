@@ -32,8 +32,7 @@ pipeline {
                     archiveArtifacts 'target/*.jar'
                 }
             }
-        }
-    }
+        
         stage('Server-Deploy') {
             agent
 	    {
@@ -48,4 +47,5 @@ pipeline {
             }         
         }
 
+	
 }
