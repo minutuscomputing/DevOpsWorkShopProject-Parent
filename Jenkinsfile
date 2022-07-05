@@ -16,7 +16,7 @@ pipeline {
 	    {
 		echo "Build and deploy stage"
                 // clone code from a GitHub repository
-                git branch: 'Meghana_WS', url: 'https://github.com/minutuscomputing/DevOpsWorkShopProject-Parent.git, credentialsId: '82e7f438-ce2b-4d58-b63d-7db7d51ae55d'
+                git branch: 'Meghana_WS', url: 'https://github.com/minutuscomputing/DevOpsWorkShopProject-Parent.git', credentialsId: '82e7f438-ce2b-4d58-b63d-7db7d51ae55d'
 
                 // Run Maven on a Unix agent.
                 sh "mvn -Dmaven.test.failure.ignore=true clean test package deploy"
