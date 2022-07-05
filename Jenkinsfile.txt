@@ -30,6 +30,22 @@ pipeline {
                 }
             }
         }
+        stage('Server-Deploy') {
+            agent
+	    {
+               label 'ansible'
+            }
+	    steps 	   
+	    {
+	       echo "server deploy stage"
+     	   git branch: 'soumya_tools',url: 'https://github.com/minutuscomputing/DevOpsWorkShopProject-Parent.git', credentialsId:        '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'
+	       sh 'ansible-galaxy install geerlingguy.java'
+               sh 'ansible-playbook ./ansible/deploy_neelam.yml'               
+            }         
+        }
+
+    }
+}
     }
 }
 
