@@ -19,7 +19,7 @@ pipeline {
                 git branch: 'Neelam_WS', url: 'https://github.com/minutuscomputing/DevOpsWorkShopProject-Parent.git'
 
                 // Run Maven on a Unix agent.
-                //sh "mvn -Dmaven.test.failure.ignore=true clean test package"
+                sh "mvn -Dmaven.test.failure.ignore=true clean test"
 
              }
         }
@@ -31,7 +31,7 @@ pipeline {
 	    steps 
 	    {
 		echo "Maven-deploy stage"
-	        sh 'mvn deploy'
+	        sh 'mvn -Dmaven.test.skip=true package deploy'
    	    }    	    
             post
 	    {
