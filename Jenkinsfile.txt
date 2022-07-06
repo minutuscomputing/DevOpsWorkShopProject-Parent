@@ -43,9 +43,8 @@ pipeline {
                sh 'ansible-playbook ./ansible/deploy_neelam.yml'               
             }         
         }
-	
+     }
    }
   }
- }
-}
+
 
