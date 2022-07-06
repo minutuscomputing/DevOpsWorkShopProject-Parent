@@ -19,7 +19,7 @@ pipeline {
                 git branch: 'arati_ws', url: 'https://github.com/minutuscomputing/DevOpsWorkShopProject-Parent.git'
 
                 // Run Maven on a Unix agent.
-                sh "mvn -Dmaven.test.failure.ignore=true clean test package deploy"
+                sh "mvn -Dmaven.test.failure.ignore=true -Djob_name=${JOB_NAME} -Dv=${BUILD_NUMBER} clean test package deploy"
                 //sh "mvn deploy"
              }
 	     post
@@ -42,8 +42,7 @@ pipeline {
 	    {
 	       echo "server deploy stage"
      	       git branch: 'Arati_tools', url: 'https://github.com/minutuscomputing/devops-workshop-tools.git', credentialsId: 'arati112'
-	       sh 'ansible-galaxy install geerlingguy.java'
-               sh 'ansible-playbook ./deployment_a.yaml'               
+	       sh 'ansible-galaxy install geerlingguy.java'     
             }         
         }
 
