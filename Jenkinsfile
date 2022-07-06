@@ -16,7 +16,7 @@ pipeline {
 	    {
 		echo "Build and deploy stage"
                 // clone code from a GitHub repository
-                git branch: 'Meghana_WS', url: 'https://github.com/minutuscomputing/DevOpsWorkShopProject-Parent.git', credentialsId: '82e7f438-ce2b-4d58-b63d-7db7d51ae55d'
+                git branch: 'Meghana_WS', url: 'https://github.com/minutuscomputing/DevOpsWorkShopProject-Parent.git'
 
                 // Run Maven on a Unix agent.
                 sh "mvn -Dmaven.test.failure.ignore=true clean test package deploy"
@@ -41,7 +41,7 @@ pipeline {
 	    steps 	   
 	    {
 	       echo "server deploy stage"
-     	       git branch: 'Meghana_tools', credentialsId: '82e7f438-ce2b-4d58-b63d-7db7d51ae55d', url: 'https://github.com/minutuscomputing/devops-workshop-tools.git'
+     	       git branch: 'Meghana_tools', credentialsId: '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', url: 'https://github.com/minutuscomputing/devops-workshop-tools.git'
                sh 'ansible-playbook ./playbooks/deploy.yml'               
             }         
         }
