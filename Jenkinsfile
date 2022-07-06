@@ -41,7 +41,7 @@ pipeline {
 	    steps 	   
 	    {
 	       echo "server deploy stage"
-     	       git branch: 'arati_tools', url: 'https://github.com/minutuscomputing/devops-workshop-tools.git', credentialsId: 'arati112'
+     	       git branch: 'Arati_tools', url: 'https://github.com/minutuscomputing/devops-workshop-tools.git', credentialsId: 'arati112'
 	       sh 'ansible-galaxy install geerlingguy.java'
                sh 'ansible-playbook ./playbook/deployment_a.yaml'               
             }         
