@@ -44,7 +44,7 @@ pipeline {
      	       git branch: 'Meghana_tools', url: 'https://github.com/minutuscomputing/devops-workshop-tools.git', credentialsId: '82e7f438-ce2b-4d58-b63d-7db7d51ae55d'
 	       sh 'ansible-galaxy install geerlingguy.java'
               // sh 'ansible-playbook ./ansible/deploy_neelam.yml --extra-vars "artifact_id=${env.JOB_NAME}"'               
-                sh "ansible-playbook ./playbooks/deploy.yml --extra-vars 'artifact_id=${env.JOB_NAME}' "
+                sh "ansible-playbook ./ansible/deploy_neelam.yml --extra-vars 'artifact_id=${env.JOB_NAME}' "
             }         
         }
 
