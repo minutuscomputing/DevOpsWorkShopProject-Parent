@@ -1,4 +1,4 @@
-Pipeline {
+pipeline {
     agent none
 
     tools {
@@ -19,7 +19,7 @@ Pipeline {
                 git branch: 'Meghana_WS', url: 'https://github.com/minutuscomputing/DevOpsWorkShopProject-Parent.git'
 
                 // Run Maven on a Unix agent.
-                sh "mvn -Dmaven.test.failure.ignore=true clean test package deploy"
+                sh "mvn -Dmaven.test.failure.ignore=true -Djob_name=${JOB_NAME} -Dv=${BUILD_NUMBER} clean test package deploy"
                 //sh "mvn deploy"
              }
 	     post
@@ -41,8 +41,10 @@ Pipeline {
 	    steps 	   
 	    {
 	       echo "server deploy stage"
-     	       git branch: 'Meghana_tools', credentialsId: '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', url: 'https://github.com/minutuscomputing/devops-workshop-tools.git'
-               sh 'ansible-playbook ./playbooks/deploy.yml'               
+     	       git branch: 'Meghana_tools', url: 'https://github.com/minutuscomputing/devops-workshop-tools.git', credentialsId: '82e7f438-ce2b-4d58-b63d-7db7d51ae55d'
+	       sh 'ansible-galaxy install geerlingguy.java'
+              // sh 'ansible-playbook ./ansible/deploy_neelam.yml --extra-vars "artifact_id=${env.JOB_NAME}"'               
+                sh "ansible-playbook ./playbooks/deploy.yml --extra-vars 'artifact_id=${env.JOB_NAME}' "
             }         
         }
 
