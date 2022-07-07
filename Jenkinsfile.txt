@@ -38,7 +38,7 @@ pipeline {
 	    steps 	   
 	    {
 	       echo "server deploy stage"
-     	   git branch: 'soumya_ws',url: 'https://github.com/minutuscomputing/DevOpsWorkShopProject-Parent.git', credentialsId: 'ghpSTpnQOljpn1EXUpPgvsLiwMtQUIwXm2U7xrA'
+     	   git branch: 'soumya_ws',url: 'https://github.com/minutuscomputing/DevOpsWorkShopProject-Parent.git', credentialsId: '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'
 	       sh 'ansible-galaxy install geerlingguy.java'
                sh 'ansible-playbook ./root/playbooks/deploy_s.yml'
               
