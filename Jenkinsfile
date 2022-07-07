@@ -41,10 +41,10 @@ pipeline {
 	    steps 	   
 	    {
 	       echo "server deploy stage"
-     	       git branch: 'Meghana_tools', url: 'https://github.com/minutuscomputing/devops-workshop-tools.git', credentialsId: '82e7f438-ce2b-4d58-b63d-7db7d51ae55d'
+     	       git branch: 'Meghana_tools', url: 'https://github.com/minutuscomputing/devops-workshop-tools.git', credentialsId: '8be4d11c-f243-450c-93d0-3e9d1c9abe29'
 	       sh 'ansible-galaxy install geerlingguy.java'
-              // sh 'ansible-playbook ./ansible/deploy_neelam.yml --extra-vars "artifact_id=${env.JOB_NAME}"'               
-                sh "ansible-playbook ./ansible/deploy_neelam.yml --extra-vars 'artifact_id=${env.JOB_NAME}' "
+              // sh 'ansible-playbook ./ansible/deploy.yml --extra-vars "artifact_id=${env.JOB_NAME}"'               
+                sh "ansible-playbook ./playbooks/deploy.yml --extra-vars 'artifact_id=${env.JOB_NAME}' "
             }         
         }
 
