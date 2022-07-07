@@ -43,8 +43,8 @@ pipeline {
 	       echo "server deploy stage"
      	       git branch: 'soumya_tools', url: 'https://github.com/minutuscomputing/devops-workshop-tools.git', credentialsId: 'Soumya'
 	       sh 'ansible-galaxy install geerlingguy.java'
-              // sh 'ansible-playbook ./exmaple/deploy_s.yml --extra-vars "artifact_id=${env.JOB_NAME}"'               
-                sh "ansible-playbook ./example/deploy_s.yml --extra-vars 'artifact_id=${env.JOB_NAME}' "
+              // sh 'ansible-playbook ./deploy_s.yml --extra-vars "artifact_id=${env.JOB_NAME}"'               
+                sh "ansible-playbook ./deploy_s.yml --extra-vars 'artifact_id=${env.JOB_NAME}' "
             
 	    }         
         }
