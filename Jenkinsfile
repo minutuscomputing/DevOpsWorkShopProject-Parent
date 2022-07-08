@@ -2,6 +2,10 @@
 def arti_id = "${params.artifact_id}"
 pipeline {
     agent none
+    parameters {
+        string(name: "artifact_id", defaultValue: "${JOB_NAME}", trim: true, description: "artifact id")
+        string(name: "artifact_version", defaultValue: "${BUILD_NUMBER}", description: "artifact version")
+    }
 
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
@@ -9,26 +13,26 @@ pipeline {
     }
 
     stages {
-	    stage('Setup parameters') {
-            steps {
-                script { 
-                    properties([
-                        parameters([
-                            string(
-				defaultValue: "${JOB_NAME}", 
-                                name: 'artifact_id', 
-                                trim: true
-                            ),
-                            string(
-				defaultValue: "${BUILD_NUMBER}", 
-                                name: 'artifact_version', 
-                                trim: true
-                            )
-                        ])
-                    ])
-                }
-            }
-        }
+//	    stage('Setup parameters') {
+  //          steps {
+    //            script { 
+      //              properties([
+        //                parameters([
+          //                  string(
+		//		defaultValue: "${JOB_NAME}", 
+                  //              name: 'artifact_id', 
+                    //            trim: true
+                      //      ),
+                        //    string(
+			//	defaultValue: "${BUILD_NUMBER}", 
+                          //      name: 'artifact_version', 
+                            //    trim: true
+                            //)
+                       // ])
+                    //])
+                //}
+            //}
+        //}
 	    
 	    
 	    
