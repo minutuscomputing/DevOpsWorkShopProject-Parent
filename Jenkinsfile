@@ -1,4 +1,5 @@
 //neelam
+def arti_id = ${params.artifact_id}
 pipeline {
     agent none
 
@@ -46,7 +47,7 @@ pipeline {
      	       git branch: 'Neelam_tools', url: 'https://github.com/minutuscomputing/devops-workshop-tools.git', credentialsId: '8be4d11c-f243-450c-93d0-3e9d1c9abe29'
 	       sh 'ansible-galaxy install geerlingguy.java'
               // sh 'ansible-playbook ./ansible/deploy_neelam.yml --extra-vars "artifact_id=${env.JOB_NAME}"'               
-                sh "ansible-playbook ./ansible/deploy_neelam.yml --extra-vars 'artifact_id=$params.artifact_id' "
+		    sh "ansible-playbook ./ansible/deploy_neelam.yml --extra-vars 'artifact_id=${arti_id}' "
             }         
         }
 
