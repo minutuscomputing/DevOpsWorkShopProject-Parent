@@ -19,7 +19,8 @@ pipeline {
                 git branch: 'Neelam_WS', url: 'https://github.com/minutuscomputing/DevOpsWorkShopProject-Parent.git'
 
                 // Run Maven on a Unix agent.
-                sh "mvn -Dmaven.test.failure.ignore=true -Djob_name=${JOB_NAME} -Dv=${BUILD_NUMBER} clean test package deploy"
+                //sh "mvn -Dmaven.test.failure.ignore=true -Djob_name=${JOB_NAME} -Dv=${BUILD_NUMBER} clean test package deploy"
+		sh "mvn -Dmaven.test.failure.ignore=true -Djob_name=${params.artifact_id} -Dv=${params.artifact_version} clean test package deploy"
                 //sh "mvn deploy"
              }
 	     post
@@ -44,7 +45,7 @@ pipeline {
      	       git branch: 'Neelam_tools', url: 'https://github.com/minutuscomputing/devops-workshop-tools.git', credentialsId: '8be4d11c-f243-450c-93d0-3e9d1c9abe29'
 	       sh 'ansible-galaxy install geerlingguy.java'
               // sh 'ansible-playbook ./ansible/deploy_neelam.yml --extra-vars "artifact_id=${env.JOB_NAME}"'               
-                sh "ansible-playbook ./ansible/deploy_neelam.yml --extra-vars 'artifact_id=${env.JOB_NAME}' "
+                sh "ansible-playbook ./ansible/deploy_neelam.yml --extra-vars 'artifact_id=${params.artifact_id}' "
             }         
         }
 
