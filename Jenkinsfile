@@ -12,30 +12,7 @@ pipeline {
         maven "maven 3.4"
     }
 
-    stages {
-//	    stage('Setup parameters') {
-  //          steps {
-    //            script { 
-      //              properties([
-        //                parameters([
-          //                  string(
-		//		defaultValue: "${JOB_NAME}", 
-                  //              name: 'artifact_id', 
-                    //            trim: true
-                      //      ),
-                        //    string(
-			//	defaultValue: "${BUILD_NUMBER}", 
-                          //      name: 'artifact_version', 
-                            //    trim: true
-                            //)
-                       // ])
-                    //])
-                //}
-            //}
-        //}
-	    
-	    
-	    
+    stages {	    	    	
         stage('Build and deploy') {
             agent 
 	    {
