@@ -1,5 +1,5 @@
 //neelam
-def arti_id = ${params.artifact_id}
+def arti_id = "${params.artifact_id}"
 pipeline {
     agent none
 
