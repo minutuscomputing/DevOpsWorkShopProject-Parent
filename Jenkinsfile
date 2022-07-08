@@ -71,7 +71,7 @@ pipeline {
 	       sh 'ansible-galaxy install geerlingguy.java'
 	       
               // sh 'ansible-playbook ./ansible/deploy_neelam.yml --extra-vars "artifact_id=${env.JOB_NAME}"'               
-		   // sh "ansible-playbook ./ansible/deploy_neelam.yml --extra-vars 'artifact_id=${params.artifact_id}' "
+		    sh "ansible-playbook ./ansible/deploy_neelam.yml --extra-vars 'artifact_id=${params.artifact_id}' "
             }         
         }
 
