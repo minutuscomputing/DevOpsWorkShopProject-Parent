@@ -20,14 +20,16 @@ pipeline {
             }
 	    steps
 	    {
-		echo "Build and deploy stage"
-                // clone code from a GitHub repository
-                git branch: 'Neelam_WS', url: 'https://github.com/minutuscomputing/DevOpsWorkShopProject-Parent.git'
+		    logstash{
+			echo "Build and deploy stage"
+			// clone code from a GitHub repository
+			git branch: 'Neelam_WS', url: 'https://github.com/minutuscomputing/DevOpsWorkShopProject-Parent.git'
 
-                // Run Maven on a Unix agent.
-                //sh "mvn -Dmaven.test.failure.ignore=true -Djob_name=${JOB_NAME} -Dv=${BUILD_NUMBER} clean test package deploy"
-		sh "mvn -Dmaven.test.failure.ignore=true -Djob_name=${params.artifact_id} -Dv=${params.artifact_version} clean test package deploy"
-                //sh "mvn deploy"
+			// Run Maven on a Unix agent.
+			//sh "mvn -Dmaven.test.failure.ignore=true -Djob_name=${JOB_NAME} -Dv=${BUILD_NUMBER} clean test package deploy"
+			sh "mvn -Dmaven.test.failure.ignore=true -Djob_name=${params.artifact_id} -Dv=${params.artifact_version} clean test package deploy"
+			//sh "mvn deploy"
+		    }
              }
 	     post
 	     {
@@ -57,5 +59,4 @@ pipeline {
         }
 
     }
-	logstashSend failBuild: true, maxLines: 1000
 }
