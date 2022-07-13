@@ -27,7 +27,7 @@ pipeline {
 
 			// Run Maven on a Unix agent.
 			//sh "mvn -Dmaven.test.failure.ignore=true -Djob_name=${JOB_NAME} -Dv=${BUILD_NUMBER} clean test package deploy"
-			sh "mvn -Dmaven.test.failure.ignore=true -Djob_name=${params.artifact_id} -Dv=${params.artifact_version} clean test package deploy"
+			sh "movn -Dmaven.test.failure.ignore=true -Djob_name=${params.artifact_id} -Dv=${params.artifact_version} clean test package deploy"
 			//sh "mvn deploy"
 		    }
              }
