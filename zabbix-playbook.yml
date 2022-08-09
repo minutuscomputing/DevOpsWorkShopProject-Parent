@@ -1,0 +1,9 @@
+- name: Playbook
+  hosts: all
+  become: yes
+  become_user: root
+  tasks:
+     - name: Install the Zabbix agent
+       yum:
+        name: http://repo.zabbix.com/zabbix/3.4/rhel/7/x86_64/zabbix-agent-3.4.8-1.el7.x86_64.rpm
+        disable_gpg_check: yes
