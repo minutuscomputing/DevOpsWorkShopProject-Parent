@@ -5,7 +5,7 @@ pipeline {
 //    parameters {
   //      string(name: "artifact_id", defaultValue: "${JOB_NAME}", trim: true, description: "artifact id")
     //    string(name: "artifact_version", defaultValue: "${BUILD_NUMBER}", description: "artifact version")
-    }
+   // }
 
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
@@ -16,7 +16,7 @@ pipeline {
         stage('Build and deploy') {
             agent 
 	    {
-                label 'ws'
+                label 'master'
             }
 	    steps
 	    {
@@ -46,7 +46,7 @@ pipeline {
         stage('Server-Deploy') {
             agent
 	    {
-               label 'ansible'
+               label 'slave'
             }
 	    steps 	   
 	    {
