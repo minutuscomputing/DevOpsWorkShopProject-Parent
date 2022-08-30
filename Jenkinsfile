@@ -20,7 +20,7 @@ pipeline {
             }
 	    steps
 	    {
-		    logstash{
+		    //logstash{
 			echo "Build and deploy stage"
 			// clone code from a GitHub repository
 			git branch: 'Neelam_WS', url: 'https://github.com/minutuscomputing/DevOpsWorkShopProject-Parent.git'
@@ -30,7 +30,7 @@ pipeline {
 			sh "mvn -Dmaven.test.failure.ignore=true clean test package deploy" 
 			//sh "mvn -Dmaven.test.failure.ignore=true -Djob_name=${params.artifact_id} -Dv=${params.artifact_version} clean test package deploy"
 			//sh "mvn deploy"
-		    }
+		    //}
              }
 	     post
 	     {
