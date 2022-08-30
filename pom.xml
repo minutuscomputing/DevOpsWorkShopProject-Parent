@@ -11,7 +11,8 @@
 	<groupId>com.crm</groupId>
 	<!-- <artifactId>${job_name}</artifactId> -->
 	<artifactId>WS-neelam</artifactId>
-	<version>0.0.${v}-SNAPSHOT</version>
+	<!-- <version>0.0.${v}-SNAPSHOT</version> -->
+	<version>0.0.1-SNAPSHOT</version>
 	<name>crm</name>
 	<description>Demo project for Spring Boot</description>
 
