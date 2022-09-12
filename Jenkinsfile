@@ -8,10 +8,8 @@ pipeline {
 
     stages {
         stage('Build and deploy') {
-            agent 
-	    {
-                label 'ws'
-            }
+            agent any
+		
 	    steps
 	    {
 		echo "Build and deploy stage"
@@ -34,10 +32,7 @@ pipeline {
         }
 
         stage('Server-Deploy') {
-            agent
-	    {
-               label 'ansible'
-            }
+          agent any
 	    steps 	   
 	    {
 	       echo "server deploy stage"
