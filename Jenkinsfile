@@ -1,48 +1,72 @@
 pipeline {
-    agent none
+    agent any
 
     tools {
-        // Install the Maven version configured as "M3" and add it to the path.
-        maven "3.6.3"
+        maven "default"
     }
 
     stages {
-        stage('Build and deploy') {
+        stage('Clean & Compile') {
             agent any
 		
 	    steps
 	    {
-		echo "Build and deploy stage"
-                // clone code from a GitHub repository
-                git branch: 'Meghana_WS', url: 'https://github.com/minutuscomputing/DevOpsWorkShopProject-Parent.git'
+		echo "Build stage"
+               
+                git branch: 'main', url: 'https://github.com/minutuscomputing/sample-java-application.git', credentialsId:'github_meghana'
 
-                // Run Maven on a Unix agent.
-                sh "mvn -Dmaven.test.failure.ignore=true -Djob_name=${JOB_NAME} -Dv=${BUILD_NUMBER} clean test package deploy"
-                //sh "mvn deploy"
+                sh "mvn -Dmaven.test.failure.ignore=true clean compile "
              }
-	     post
-	     {
-                // If Maven was able to run the tests, even if some of the test
-                // failed, record the test results and archive the jar file.
-                success {
-                    junit '**/target/surefire-reports/TEST-*.xml'
-                    archiveArtifacts 'target/*.jar'
-                }
-              }
         }
 
-        stage('Server-Deploy') {
+        stage('Test') {
+            agent any
+		
+	    steps
+	    {
+		echo "test stage"
+               
+                git branch: 'main', url: 'https://github.com/minutuscomputing/sample-java-application.git', credentialsId:'github_meghana'
+
+                sh "mvn -Dmaven.test.failure.ignore=true test"
+             }
+        }
+        
+        stage('Package') {
+            agent any
+		
+	    steps
+	    {
+		echo "package stage"
+               
+                git branch: 'main', url: 'https://github.com/minutuscomputing/sample-java-application.git', credentialsId:'github_meghana'
+
+                sh "mvn -Dmaven.test.failure.ignore=true package"
+             }
+        }
+
+        stage('Install') {
+            agent any
+		
+	    steps
+	    {
+		echo "install stage"
+               
+                git branch: 'main', url: 'https://github.com/minutuscomputing/sample-java-application.git', credentialsId:'github_meghana'
+
+                sh "mvn -Dmaven.test.failure.ignore=true install"
+             }
+        }
+       
+
+        stage('Deploy') {
           agent any
 	    steps 	   
 	    {
-	       echo "server deploy stage"
-     	       git branch: 'Meghana_tools', url: 'https://github.com/minutuscomputing/devops-workshop-tools.git', credentialsId: ''
-	       sh 'ansible-galaxy install geerlingguy.java'
-              // sh 'ansible-playbook ./ansible/deploy.yml --extra-vars "artifact_id=${env.JOB_NAME}"'               
-                sh "ansible-playbook ./ansible/example/deploy.yml --extra-vars 'artifact_id=${env.JOB_NAME}' "
-            
-	    }         
-        }
-
+	        sshagent(['tomcat']) {
+	          sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/deploy@2/target/studentapp-2.5-SNAPSHOT.war ec2-user@18.220.31.206:/opt/tomcat/webapps"
+	        }
+	    }
+         }
     }
 }
