@@ -1,0 +1,16 @@
+name: Gitleaks Secrets Scan for DevOpsWorkshopProject-Parent Pramod_WSP branch
+
+on:
+  push:
+    branches: [Pramod_WSP]
+  pull_request:
+    branches: [Pramod_WSP]
+  workflow_dispatch:
+
+jobs:
+  check-for-secrets:
+    uses: minutuscomputing/DevOpsWorkShopProject-Parent/.github/workflows/DevOpsWorkShopProject-Parent_master.yml@master
+    secrets:
+      token: ${{ secrets.MY_GITHUB_TOKEN }}
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}}
