@@ -9,7 +9,7 @@ on:
 
 jobs:
   check-for-secrets:
-    uses: minutuscomputing/jenkins-backup/.github/workflows/DevOpsWorkShopProject-Parent_master.yml@master
+    uses: minutuscomputing/DevOpsWorkShopProject-Parent/.github/workflows/DevOpsWorkShopProject-Parent_master.yml@master
     secrets:
       token: ${{ secrets.MY_GITHUB_TOKEN }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
