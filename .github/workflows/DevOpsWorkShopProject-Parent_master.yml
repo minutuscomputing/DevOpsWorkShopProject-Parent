@@ -1,0 +1,48 @@
+name: Gitleaks Secrets Scan for DevOpsWorkshopProject-Parent master branch
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_call:
+    secrets:
+      token:
+        required: true
+      SSH_PRIVATE_KEY:
+        required: true
+      GITLEAKS_LICENSE:
+        required: true
+jobs:
+  check-for-secrets:
+    runs-on: 'ubuntu-latest'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set Git identity
+        run: |
+          git config --global user.email "chetan.vaidya@minutuscomputing.com"
+          git config --global user.name "ChetanVaidya-Minutus"
+
+      - name: Clone gitleaks/gitleaks-action
+        env:
+          GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          git clone git@github.com:minutuscomputing/GitLeaks-code.git
+          cd GitLeaks-code
+          git pull
+          
+      - name: Scan for secrets using gitleaks
+        env:
+          GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+          GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}}
+        uses: ./GitLeaks-code
+        with:
+          repo_path: "."
+          config_path: ".gitleaks.toml"
