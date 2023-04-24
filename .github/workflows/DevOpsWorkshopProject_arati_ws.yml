@@ -1,0 +1,16 @@
+name: Gitleaks Secrets Scan for DevOpsWorkshopProject-Parent arati_ws branch
+
+on:
+  push:
+    branches: [arati_ws]
+  pull_request:
+    branches: [arati_ws]
+  workflow_dispatch:
+
+jobs:
+  check-for-secrets:
+    uses: minutuscomputing/DevOpsWorkShopProject-Parent/.github/workflows/DevOpsWorkShopProject-Parent_master.yml@master
+    secrets:
+      token: ${{ secrets.MY_GITHUB_TOKEN }}
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}}
