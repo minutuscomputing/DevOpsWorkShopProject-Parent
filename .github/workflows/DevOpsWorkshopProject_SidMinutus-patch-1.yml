@@ -2,15 +2,16 @@ name: Gitleaks Secrets Scan for DevOpsWorkshopProject-Parent SidMinutus-patch-1 
 
 on:
   push:
-    branches: [SidMinutus-patch-1]
-  pull_request:
-    branches: [SidMinutus-patch-1]
-  workflow_dispatch:
+    branches:
+      - '**'
+      
+  workflow_call:
+  schedule:
+      - cron: '0 9 * * *'  # This cron expression runs at 9 AM UTC every day
 
 jobs:
   check-for-secrets:
     uses: minutuscomputing/DevOpsWorkShopProject-Parent/.github/workflows/DevOpsWorkShopProject-Parent_master.yml@master
     secrets:
-      token: ${{ secrets.MY_GITHUB_TOKEN }}
-      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-      GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}}
+        token: ${{ secrets.MY_GITHUB_TOKEN }}
+        GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}}
