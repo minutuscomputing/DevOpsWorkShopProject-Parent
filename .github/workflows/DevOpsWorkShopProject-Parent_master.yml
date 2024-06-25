@@ -2,16 +2,38 @@ name: Gitleaks Secrets Scan for DevOpsWorkshopProject-Parent master branch
 
 on:
   push:
-    branches:
-      - '**'
-      
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
   workflow_call:
-  schedule:
-      - cron: '0 9 * * *'  # This cron expression runs at 9 AM UTC every day
+    secrets:
+      token:
+        required: true
+      GITLEAKS_LICENSE:
+        required: true
 
 jobs:
   check-for-secrets:
-    uses: minutuscomputing/Gitleaks-Checker/.github/workflows/Gitleaks-Checker.yml@main
-    secrets:
-        token: ${{ secrets.MY_GITHUB_TOKEN }}
-        GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set Git identity
+        run: |
+          git config --global user.email "chetan.vaidya@minutuscomputing.com"
+          git config --global user.name "ChetanVaidya-Minutus"
+
+      - name: Clone gitleaks/gitleaks-action
+        env:
+          GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+        run: |
+          git clone https://github.com/gitleaks/gitleaks-action.git
+          cd gitleaks-action
+          git pull
+
+      - name: Scan for secrets using gitleaks
+        env:
+          GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+          GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
+        uses: ./gitleaks-action
